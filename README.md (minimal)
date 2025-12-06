@@ -1,0 +1,21 @@
+# Global Holiday Calendar
+
+An extensible, lineage-safe, multi-faith holiday calendar with modular adapters, strict validation, and exports (JSON/CSV/ICS).
+
+## Quick start
+- Add or modify adapters under `src/adapters/`.
+- Place community contributions in `contrib/examples/sample-contrib.json`.
+- Run `./scripts/build.sh` to generate `data/holidays.json`, `data/holidays.csv`, `data/holidays.ics`.
+
+## Design
+- JSON Schema enforced with Ajv
+- Deterministic merging and conflict resolution
+- Export to interoperable formats
+- Sunset-aware observance fields
+
+## Contributing
+- Submit PRs with new holidays via `contrib/examples/*.json`.
+- Ensure each entry passes schema validation and includes tradition, scope, and date details.
+
+
+---
