@@ -1,0 +1,103 @@
+(src/schema/holiday.schema.json)
+
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GlobalHoliday",
+  "type": "object",
+  "required": ["id", "name", "tradition", "date", "scope"],
+  "properties": {
+    "id": { "type": "string", "description": "Stable unique ID (slug)" },
+    "name": { "type": "string", "description": "Canonical holiday name" },
+    "aliases": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional alternate names"
+    },
+    "tradition": {
+      "type": "string",
+      "description": "Religious or cultural tradition",
+      "examples": ["Jewish", "Islamic", "Christian", "Hindu", "Buddhist", "Sikh", "Jain", "Bahá'í", "Indigenous"]
+    },
+    "date": {
+      "type": "object",
+      "description": "Date information (supports lunar/solar rules)",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["fixed", "rule", "range"],
+          "description": "fixed=YYYY-MM-DD; rule=algorithm; range=start/end"
+        },
+        "value": { "type": "string", "description": "ISO date for fixed or rule code for computed" },
+        "start": { "type": "string", "description": "ISO start date for ranges" },
+        "end": { "type": "string", "description": "ISO end date for ranges" },
+        "timezone": { "type": "string", "description": "IANA TZ, default UTC" }
+      }
+    },
+    "observance": {
+      "type": "object",
+      "properties": {
+        "beginsAtSunset": { "type": "boolean", "default": false },
+        "workRestrictions": { "type": "string" },
+        "fasting": { "type": "boolean", "default": false }
+      }
+    },
+    "scope": {
+      "type": "string",
+      "enum": ["global", "regional", "local"],
+      "description": "Where observance is recognized"
+    },
+    "regions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "ISO country/region codes if not global"
+    },
+    "description": { "type": "string" },
+    "links": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Context or authoritative references"
+    },
+    "year": { "type": "integer", "description": "Resolved year for fixed dates" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Adapter-specific metadata"
+    },
+    "updatedAt": { "type": "string", "description": "ISO timestamp for last update" }
+  }
+}
+
+
+Types (src/core/types.ts)
+
+export type DateType = "fixed" | "rule" | "range";
+
+export interface Holiday {
+  id: string;
+  name: string;
+  aliases?: string[];
+  tradition: string;
+  date: {
+    type: DateType;
+    value?: string;
+    start?: string;
+    end?: string;
+    timezone?: string;
+  };
+  observance?: {
+    beginsAtSunset?: boolean;
+    workRestrictions?: string;
+    fasting?: boolean;
+  };
+  scope: "global" | "regional" | "local";
+  regions?: string[];
+  description?: string;
+  links?: string[];
+  year?: number;
+  metadata?: Record<string, unknown>;
+  updatedAt?: string;
+}
+
+
+---
