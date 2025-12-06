@@ -1,0 +1,37 @@
+global-holiday-calendar/
+├─ README.md
+├─ package.json
+├─ src/
+│  ├─ index.ts
+│  ├─ schema/
+│  │  └─ holiday.schema.json
+│  ├─ core/
+│  │  ├─ types.ts
+│  │  ├─ validate.ts
+│  │  ├─ merge.ts
+│  │  ├─ normalize.ts
+│  │  └─ exports.ts
+│  ├─ adapters/
+│  │  ├─ README.md
+│  │  ├─ adapter-template.ts
+│  │  ├─ static-jewish.ts
+│  │  ├─ static-islamic.ts
+│  │  ├─ static-christian.ts
+│  │  ├─ static-bahai.ts
+│  │  ├─ static-hindu.ts
+│  │  ├─ static-buddhist.ts
+│  │  └─ user-contrib.ts
+│  └─ utils/date.ts
+├─ data/
+│  ├─ holidays.json           (auto-generated)
+│  ├─ holidays.csv            (auto-generated)
+│  └─ holidays.ics            (auto-generated)
+├─ contrib/
+│  ├─ README.md
+│  └─ examples/
+│     └─ sample-contrib.json
+└─ scripts/
+   └─ build.sh
+
+
+---
