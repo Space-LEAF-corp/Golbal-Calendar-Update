@@ -1,0 +1,8 @@
+hurdat2:
+  url: "https://www.nhc.noaa.gov/data/hurdat/hurdat2-1851-2024-052520.txt"
+ibtracs:
+  url: "https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/csv/ibtracs.ALL.list.v04r00.csv"
+coops:
+  api_base: "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter"
+fema:
+  api_base: "https://www.fema.gov/api/open/v1/DisasterDeclarationsSummaries"
