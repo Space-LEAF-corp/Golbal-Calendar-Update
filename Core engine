@@ -1,6 +1,11 @@
-Validation (src/core/validate.ts)
 
-import Ajv from "ajv";
+
+let Ajv: typeof import("ajv");
+try {
+  Ajv = require("ajv");
+} catch (e) {
+  throw new Error("Module 'ajv' not found. Please install it with 'npm install ajv'.");
+}
 import addFormats from "ajv-formats";
 import schema from "../schema/holiday.schema.json" assert { type: "json" };
 import { Holiday } from "./types";

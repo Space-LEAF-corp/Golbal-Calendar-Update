@@ -3,15 +3,15 @@
 Fetch NOAA CO-OPS tide gauge water level for a station and date range.
 Simple wrapper for the NOAA API.
 """
-import requests
+import requests # pyright: ignore[reportMissingModuleSource]
 import json
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
 OUTDIR = Path("data/tide_gauges")
 OUTDIR.mkdir(parents=True, exist_ok=True)
 
-def get_tide(station, begin_yyyymmdd, end_yyyymmdd, product="water_level"):
+def get_tide(station, begin_yyyymmdd, end_yyyymmdd, product="water_level"): # pyright: ignore[reportUnknownParameterType, reportMissingParameterType]
     url = (
         "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter"
         f"?product={product}&station={station}&begin_date={begin_yyyymmdd}"
@@ -27,5 +27,5 @@ def get_tide(station, begin_yyyymmdd, end_yyyymmdd, product="water_level"):
 
 if __name__ == "__main__":
     # example: station 8720218 (Key West) for one day
-    today = datetime.utcnow().strftime("%Y%m%d")
+    today = datetime.now(timezone.utc).strftime("%Y%m%d")
     get_tide("8720218", today, today)

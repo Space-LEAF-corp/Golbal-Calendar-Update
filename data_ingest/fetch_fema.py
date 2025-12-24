@@ -2,14 +2,14 @@
 """
 Fetch FEMA disaster declarations CSV (public dataset).
 """
-import requests
+import requests # pyright: ignore[reportMissingModuleSource]
 from pathlib import Path
 
 OUTDIR = Path("data/fema")
 OUTDIR.mkdir(parents=True, exist_ok=True)
 URL = "https://www.fema.gov/api/open/v1/DisasterDeclarationsSummaries"  # paginated API
 
-def fetch_all(output="data/fema/declarations.json"):
+def fetch_all(output="data/fema/declarations.json"): # pyright: ignore[reportMissingParameterType]
     r = requests.get(URL, timeout=60)
     r.raise_for_status()
     Path(output).write_bytes(r.content)

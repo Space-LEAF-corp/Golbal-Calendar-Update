@@ -4,29 +4,26 @@ package.json
   "name": "global-holiday-calendar",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "build": "ts-node src/index.ts",
-    "compile": "tsc",
-    "lint": "eslint .",
-    "validate": "ts-node src/index.ts --validate-only"
-  },
-  "dependencies": {
-    "ajv": "^8.12.0",
-    "ajv-formats": "^2.1.1"
-  },
-  "devDependencies": {
-    "typescript": "^5.6.3",
-    "ts-node": "^10.9.2",
-    "eslint": "^9.13.0",
-    "@types/node": "^22.9.0"
+
+  {
+    "name": "global-holiday-calendar",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+      "build": "ts-node src/index.ts",
+      "compile": "tsc",
+      "lint": "eslint .",
+      "validate": "ts-node src/index.ts --validate-only"
+    },
+    "dependencies": {
+      "ajv": "^8.12.0",
+      "ajv-formats": "^2.1.1"
+    },
+    "devDependencies": {
+      "typescript": "^5.6.3",
+      "ts-node": "^10.9.2",
+      "eslint": "^9.13.0",
+      "@types/node": "^22.9.0"
+    }
   }
-}
-
-
-scripts/build.sh
-
-#!/usr/bin/env bash
 set -euo pipefail
-rm -f data/holidays.json data/holidays.csv data/holidays.ics
-npm run build
-echo "Artifacts written to data/"
